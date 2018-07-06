@@ -3,8 +3,21 @@
     $('.handle').closest('tbody').activeAdminSortable();
   });
 
+  function sortHelper(e, tr)
+  {
+    var $originals = tr.children();
+    var $helper = tr.clone();
+    $helper.children().each(function(index)
+    {
+      // Set helper cell sizes to match the original sizes
+      $(this).outerWidth($originals.eq(index).outerWidth());
+    });
+    return $helper;
+  }
+
   $.fn.activeAdminSortable = function() {
     this.sortable({
+      helper: sortHelper,
       update: function(event, ui) {
         var elem = ui.item.find('[data-sort-url]'),
           url = elem.data('sort-url'),
