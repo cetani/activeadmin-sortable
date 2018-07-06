@@ -1,7 +1,10 @@
 (function($) {
-  $(document).ready(function() {
+  function sortableInitializer() {
     $('.handle').closest('tbody').activeAdminSortable();
-  });
+  }
+
+  $(sortableInitializer);
+  $(document).on('turbolinks:load', sortableInitializer);
 
   $.fn.activeAdminSortable = function() {
     this.sortable({
